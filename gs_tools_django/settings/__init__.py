@@ -3,7 +3,6 @@ from .localization import *  # noqa
 from .django import *  # noqa
 from .security import *  # noqa
 from .cache import *  # noqa
-from .celery import *  # noqa
 from .database import *  # noqa
 from .email import *  # noqa
 from .rabbitmq import *  # noqa
