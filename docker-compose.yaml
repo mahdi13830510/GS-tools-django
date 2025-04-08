@@ -1,0 +1,61 @@
+services:
+  app: &app
+    image: gstools
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    depends_on:
+      - db
+      - redis
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    env_file: ./.env
+    environment:
+      - GSTOOLS_REDIS_HOST=redis
+      - GSTOOLS_POSTGRES_HOST=db
+      - GSTOOLS_CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672
+      - GSTOOLS_CELERY_RESULT_BACKEND=redis://redis:6379
+
+    command: python manage.py runserver 0.0.0.0:8000
+  db:
+    image: focker.ir/postgres:17.1-bullseye
+    restart: always
+    user: root
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/postgres/:/home/postgres/pgdata/data/
+    env_file: ./.env
+
+  redis:
+    image: focker.ir/redis/redis-stack-server:7.4.0-v1
+    ports:
+      - "${GSTOOLS_COMPOSE_REDIS_PORT:-6379}:6379"
+    volumes:
+      - ./volumes/redis/data/:/data/
+    env_file: ./.env
+
+  rabbitmq:
+    image: focker.ir/rabbitmq:4.0.3
+    ports:
+      - 5672:5672
+    env_file: ./.env
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  celeryworker:
+    <<: *app
+    image: gstools-celeryworker
+    entrypoint: /start-celery.sh
+    depends_on:
+      - rabbitmq
+    ports: []

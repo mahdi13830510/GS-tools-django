@@ -1,0 +1,4 @@
+from .shared import env
+
+FILES_MAX_SIZE_MEGABYTES = env.int("GSTOOLS_FILES_MAX_SIZE_MEGABYTES", default=100)
+FILES_NAME_MAX_LENGTH = env.int("GSTOOLS_FILES_NAME_MAX_LENGTH", default=255)
