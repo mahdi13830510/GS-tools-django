@@ -1,3 +1,0 @@
-from gs_tools_django.celery import app as celery_app
-
-__all__ = ["celery_app"]
