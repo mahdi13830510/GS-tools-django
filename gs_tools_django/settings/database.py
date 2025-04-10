@@ -1,12 +1,13 @@
 from .shared import env
 
 DATABASES = {
-    "default": {
-        "ENGINE": env("DB_ENGINE", default="django.db.backends.postgresql"),
-        "NAME": env("POSTGRES_DB"),
-        "USER": env("POSTGRES_USER"),
-        "PASSWORD": env("POSTGRES_PASSWORD"),
-        "HOST": env("POSTGRES_HOST", default="db"),
-        "PORT": env("POSTGRES_PORT", default="5432"),
-    },
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',   # Use PostgreSQL as the backend
+        'NAME': 'db',                                # Database name
+        'USER': 'postgres',                          # Username
+        'PASSWORD': 'gstools',                       # Password
+        'HOST': '212.80.20.179',                       # Database host IP
+        'PORT': '31028',                             # Port number
+    }
 }
+
