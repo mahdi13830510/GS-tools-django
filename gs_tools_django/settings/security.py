@@ -41,8 +41,11 @@ SMS_PROVIDER = env.str("GSTOOLS_SMS_PROVIDER", default=SmsProvider.KAVENEGAR)
 KAVENEGAR_API_KEY = env.str("GSTOOLS_KAVENEGAR_API_KEY", default="")
 
 ## Cors
-CORS_ALLOW_ALL_ORIGINS = env.bool("GSTOOLS_CORS_ALLOW_ALL_ORIGINS", default=False)
-CORS_ALLOWED_ORIGINS: Sequence[str] = env.list("GSTOOLS_CORS_ALLOWED_ORIGINS", default=[])
+CORS_ALLOW_ALL_ORIGINS = env.bool("GSTOOLS_CORS_ALLOW_ALL_ORIGINS", default=True)
+CORS_ALLOWED_ORIGINS: Sequence[str] = env.list(
+    "GSTOOLS_CORS_ALLOWED_ORIGINS",
+    default=["https://gs-tools.kubarcloud.net"]
+)
 CORS_DEFAULT_ALLOW_HEADERS = env.list(
     "GSTOOLS_CORS_DEFAULT_ALLOW_HEADERS",
     default=[
