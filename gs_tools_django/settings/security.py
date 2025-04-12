@@ -13,7 +13,7 @@ class SmsProvider(StrEnum):
 # WARN: keep the secret key used in production secret.
 SECRET_KEY = env.str("GSTOOLS_SECRET_KEY", default=None)
 
-ALLOWED_HOSTS = env.list("GSTOOLS_ALLOWED_HOSTS", default=["127.0.0.1"])
+ALLOWED_HOSTS = env.list("GSTOOLS_ALLOWED_HOSTS", default=["127.0.0.1", "0.0.0.0"])
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
