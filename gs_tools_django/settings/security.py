@@ -73,6 +73,8 @@ CORS_ALLOW_HEADERS = env.list(
 )
 
 ## CSRF
+CORS_ALLOW_CREDENTIALS = True
+
 CSRF_TRUSTED_ORIGINS: Sequence[str] = env.list("GSTOOLS_CSRF_TRUSTED_ORIGINS", default=[])
 
 if not SECRET_KEY:
