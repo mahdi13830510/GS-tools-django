@@ -9,4 +9,3 @@ from .rabbitmq import *  # noqa
 from .redis import *  # noqa
 from .files import *  # noqa
 from .drf import *  # noqa
-

@@ -5,7 +5,6 @@ from gs_tools_django.users.querysets import UserQuerySet
 
 
 class UserManager(BaseUserManager):
-
     def get_queryset(self) -> UserQuerySet:
         return UserQuerySet(self.model, using=self._db)
 

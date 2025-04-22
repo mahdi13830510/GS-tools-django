@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='password_changed_at',
-            field=models.DateTimeField(null=True, verbose_name='Password changed at'),
+            model_name="user",
+            name="password_changed_at",
+            field=models.DateTimeField(null=True, verbose_name="Password changed at"),
         ),
     ]
