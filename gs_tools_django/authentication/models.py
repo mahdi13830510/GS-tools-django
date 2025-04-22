@@ -6,7 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from gs_tools_django.authentication.managers import SMSLoginRequestManager
 from gs_tools_django.authentication.tasks import send_otp_sms
-from gs_tools_django.authentication.utils import generate_otp_code
+from gs_tools_django.authentication.utils.generate_otp import generate_otp_code
 from gs_tools_django.core.models import TimeStampedModel, UUIDModel
 
 

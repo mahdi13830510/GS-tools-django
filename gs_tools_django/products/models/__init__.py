@@ -2,10 +2,10 @@ from .brand import Brand
 from .catalog import Catalog
 from .category import Category
 from .discount import Discount
+from .tag import Tag
 from .image import Image
 from .product import Product
 from .product_specification import ProductSpecification
-from .tag import Tag
 from .variant import Variant
 
 __all__ = [
