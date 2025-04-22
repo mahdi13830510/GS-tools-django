@@ -37,6 +37,7 @@ django-extensions = "^3.2.3"
 django-debug-toolbar = "^5.1.0"
 ujson = "^5.10.0"
 ptpython = "^3.0.29"
+django-silk = "^5.3.2"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.9.4"

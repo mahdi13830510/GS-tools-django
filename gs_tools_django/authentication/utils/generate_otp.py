@@ -2,6 +2,7 @@ import secrets
 
 from gs_tools_django.settings import OTP_LENGTH
 
+
 def generate_otp_code():
     digits = []
 

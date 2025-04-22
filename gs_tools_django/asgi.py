@@ -1,5 +1,4 @@
-"""
-ASGI config for gs_tools_django project.
+"""ASGI config for gs_tools_django project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

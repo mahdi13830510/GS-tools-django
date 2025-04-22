@@ -1,7 +1,7 @@
-from .custom_locale import CustomLocaleMiddleware
 from .append_slash import AppendSlashMiddleware
+from .custom_locale import CustomLocaleMiddleware
 
 __all__ = [
-    "CustomLocaleMiddleware",
     "AppendSlashMiddleware",
+    "CustomLocaleMiddleware",
 ]

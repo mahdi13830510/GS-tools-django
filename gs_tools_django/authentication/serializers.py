@@ -1,22 +1,16 @@
-from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.serializerfields import PhoneNumberField
+from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from gs_tools_django.authentication.models import SMSLoginRequest
 from gs_tools_django.users.models import User
-from django.contrib.auth import authenticate
-from phonenumber_field.serializerfields import PhoneNumberField
 
 
 class SMSLoginRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = SMSLoginRequest
-        fields = [
-            "id",
-            "phone_number",
-            "created_at",
-            "expires_at"
-        ]
+        fields = ["id", "phone_number", "created_at", "expires_at"]
         extra_kwargs = {
             "id": {"read_only": True},
             "expires_at": {"read_only": True},
@@ -29,6 +23,7 @@ class SMSLoginRequestSerializer(serializers.ModelSerializer):
         request.save()
         return request
 
+
 class TokenObtainPairSerializer(serializers.Serializer):
     """Serializer to create a pair of refresh token and access token for user."""
 
@@ -38,7 +33,6 @@ class TokenObtainPairSerializer(serializers.Serializer):
 
     access = serializers.CharField(read_only=True)
     refresh = serializers.CharField(read_only=True)
-
 
     def validate(self, attrs: dict[str, str]) -> dict[str, str]:
         otp_type = attrs.get("otp_type")
@@ -66,14 +60,13 @@ class TokenObtainPairSerializer(serializers.Serializer):
 
         return self.instance
 
-class AuthenticationSerializer(serializers.Serializer):
 
+class AuthenticationSerializer(serializers.Serializer):
     phone_number = PhoneNumberField(required=True, write_only=True)
     password = serializers.CharField(required=True, write_only=True)
 
     access = serializers.CharField(read_only=True)
     refresh = serializers.CharField(read_only=True)
-
 
     def validate(self, attrs: dict[str, str]) -> dict[str, str]:
         phone_number = attrs.get("phone_number")
@@ -82,7 +75,8 @@ class AuthenticationSerializer(serializers.Serializer):
             user = User.objects.get(phone_number=phone_number, password=password)
             username = user.phone_number  # Get the username linked to this phone number
         except User.DoesNotExist:
-            raise serializers.ValidationError("No active account found with this phone number.")
+            msg = _("No active account found with this phone number.")
+            raise serializers.ValidationError(msg) from None
 
         self.user = user
         return super().validate(attrs)

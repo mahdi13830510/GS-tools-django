@@ -1,5 +1,5 @@
 # Base stage
-FROM python:3.11-slim-bullseye as base
+FROM focker.ir/python:3.11-slim-bullseye as base
 ARG BUILD_ENV
 ARG UID=1000
 ARG GID=1000

@@ -1,6 +1,10 @@
 from django.urls import path
 
-from gs_tools_django.authentication.views import SMSLoginRequestView, TokenObtainPairView, AuthenticationView
+from gs_tools_django.authentication.views import (
+    AuthenticationView,
+    SMSLoginRequestView,
+    TokenObtainPairView,
+)
 
 app_name = "authentication"
 
