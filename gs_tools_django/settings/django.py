@@ -1,7 +1,5 @@
 from enum import StrEnum
 
-from django.conf.global_settings import AUTH_USER_MODEL
-
 from .shared import BASE_DIR, DEBUG, env
 
 
@@ -40,12 +38,16 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "corsheaders",
     "cacheops",
+    "silk",
 ]
 
 LOCAL_APPS = [
     "gs_tools_django.core",
     "gs_tools_django.users",
     "gs_tools_django.authentication",
+    "gs_tools_django.profiles",
+    "gs_tools_django.products",
+    "gs_tools_django.files",
 ]
 
 DEBUG_APPS = []
@@ -68,6 +70,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 if DEBUG:
@@ -91,7 +94,8 @@ if DEBUG:
 
 EXTRA_INTERNAL_IPS = env.list(var="GSTOOLS_EXTRA_INTERNAL_IPS", cast=str, default=list())
 INTERNAL_IPS = (
-    env.list(var="GSTOOLS_INTERNAL_IPS", cast=str, default=DEFAULT_INTERNAL_IPS) + EXTRA_INTERNAL_IPS
+    env.list(var="GSTOOLS_INTERNAL_IPS", cast=str, default=DEFAULT_INTERNAL_IPS)
+    + EXTRA_INTERNAL_IPS
 )
 
 APPEND_SLASH = env.bool("GSTOOLS_APPEND_SLASH", default=True)

@@ -13,7 +13,7 @@ class SmsProvider(StrEnum):
 # WARN: keep the secret key used in production secret.
 SECRET_KEY = env.str("GSTOOLS_SECRET_KEY", default=None)
 
-ALLOWED_HOSTS = env.list("GSTOOLS_ALLOWED_HOSTS", default=["127.0.0.1", "0.0.0.0"])
+ALLOWED_HOSTS = env.list("GSTOOLS_ALLOWED_HOSTS", default=["127.0.0.1", "0.0.0.0"])  # noqa S104
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -22,7 +22,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -43,8 +42,7 @@ KAVENEGAR_API_KEY = env.str("GSTOOLS_KAVENEGAR_API_KEY", default="")
 ## Cors
 CORS_ALLOW_ALL_ORIGINS = env.bool("GSTOOLS_CORS_ALLOW_ALL_ORIGINS", default=True)
 CORS_ALLOWED_ORIGINS: Sequence[str] = env.list(
-    "GSTOOLS_CORS_ALLOWED_ORIGINS",
-    default=["https://gs-tools.kubarcloud.net"]
+    "GSTOOLS_CORS_ALLOWED_ORIGINS", default=["https://gs-tools.kubarcloud.net"]
 )
 CORS_DEFAULT_ALLOW_HEADERS = env.list(
     "GSTOOLS_CORS_DEFAULT_ALLOW_HEADERS",

@@ -1,4 +1,5 @@
 import uuid
+
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -6,10 +7,11 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
+from gs_tools_django.core.models import TimeStampedModel, UUIDModel
 from gs_tools_django.users.managers import UserManager
 
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, UUIDModel, TimeStampedModel):
     id = models.UUIDField(
         _("ID"),
         default=uuid.uuid4,
@@ -28,16 +30,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=False,
         blank=False,
     )
-    created_at = models.DateTimeField(
-        _("Created at"),
-        auto_now_add=True,
-        editable=False,
-    )
-
-    modified_at = models.DateTimeField(
-        _("Modified at"),
-        auto_now=True,
-    )
 
     is_active = models.BooleanField(
         _("Active"),
@@ -45,7 +37,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     password_changed_at = models.DateTimeField(_("Password changed at"), null=True)
-
 
     objects = UserManager()
 
