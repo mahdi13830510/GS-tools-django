@@ -1,5 +1,6 @@
 from django.utils.deprecation import MiddlewareMixin
 
+
 class AppendSlashMiddleware(MiddlewareMixin):
     def process_request(self, request):
         # Check if the URL does not have a trailing slash and does not have a file extension

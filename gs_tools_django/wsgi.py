@@ -1,5 +1,4 @@
-"""
-WSGI config for gs_tools_django project.
+"""WSGI config for gs_tools_django project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

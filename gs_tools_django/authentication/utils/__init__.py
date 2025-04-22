@@ -1,6 +1,6 @@
-from .generate_otp import generate_otp_code
+from gs_tools_django.settings import KAVENEGAR_API_KEY
+
 from .kavenegar import KavenegarSMSProvider
-from ...settings import KAVENEGAR_API_KEY
 
 
 def send_sms(phone_number, content):

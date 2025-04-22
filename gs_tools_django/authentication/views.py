@@ -1,7 +1,10 @@
 from rest_framework import generics, permissions
 
-from gs_tools_django.authentication.serializers import SMSLoginRequestSerializer, TokenObtainPairSerializer, \
-    AuthenticationSerializer
+from gs_tools_django.authentication.serializers import (
+    AuthenticationSerializer,
+    SMSLoginRequestSerializer,
+    TokenObtainPairSerializer,
+)
 
 
 class SMSLoginRequestView(generics.CreateAPIView):
@@ -14,4 +17,4 @@ class TokenObtainPairView(generics.CreateAPIView):
 
 class AuthenticationView(generics.CreateAPIView):
     serializer_class = AuthenticationSerializer
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)

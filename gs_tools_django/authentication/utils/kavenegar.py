@@ -1,13 +1,13 @@
 import logging
-
-from gs_tools_django.settings import KAVENEGAR_API_TEMPLATE_LOGIN_VERIFICATION
 from typing import Self
 
 import httpx
 import ujson
 
+from gs_tools_django.settings import KAVENEGAR_API_TEMPLATE_LOGIN_VERIFICATION
 
 DEFAULT_TIMEOUT = 10
+
 
 class KavenegarAPI:
     version = "v1"
@@ -38,7 +38,6 @@ class KavenegarAPI:
         if isinstance(params, dict):
             params = self._pars_params_to_json(params)
         url = f"https://{self.host}/{self.version}/{self.apikey}/{action}/{method}.json"
-        print("hello")
         content = httpx.post(
             url,
             headers=self.headers,
@@ -52,7 +51,7 @@ class KavenegarAPI:
             if response["return"]["status"] == 200:
                 return response["entries"]
         except ValueError as e:
-            print(e)
+            raise ValueError() from e
 
     def sms_send(self: Self, params: dict | None = None):
         return self._request("sms", "send", params)

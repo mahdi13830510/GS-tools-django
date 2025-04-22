@@ -2,6 +2,7 @@ from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.translation import activate
 
+
 class CustomLocaleMiddleware(MiddlewareMixin):
     def process_request(self, request):
         language_code = request.META.get("HTTP_X_ACCEPT_LANGUAGE")

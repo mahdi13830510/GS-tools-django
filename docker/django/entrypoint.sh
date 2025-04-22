@@ -27,9 +27,11 @@ until postgres_ready; do
         sleep 1
 done
 echo >&2 'PostgreSQL is available'
-
+echo "Making migrations"
 python manage.py makemigrations
+echo "Migrating"
 python manage.py migrate
+echo "Collecting statics"
 python manage.py collectstatic --noinput
 python manage.py runserver 0.0.0.0:8000
 # python manage.py compilemessages

@@ -52,10 +52,10 @@ services:
       timeout: 10s
       retries: 5
 
-  celeryworker:
-    <<: *app
-    image: gstools-celeryworker
-    entrypoint: /start-celery.sh
-    depends_on:
-      - rabbitmq
-    ports: []
+#  celeryworker:
+#    <<: *app
+#    image: gstools-celeryworker
+#    entrypoint: /start-celery.sh
+#    depends_on:
+#      - rabbitmq
+#    ports: []
